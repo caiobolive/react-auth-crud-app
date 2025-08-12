@@ -1,0 +1,76 @@
+module.exports = {
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
+    'plugin:@tanstack/query/recommended',
+  ],
+  plugins: ['react-hooks', 'jsx-a11y', 'react', 'prettier', 'react-refresh'],
+  env: {
+    node: true,
+    browser: true,
+    es2021: true,
+    jest: true,
+  },
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 2022,
+  },
+  rules: {
+    camelcase: [
+      'error',
+      { ignoreDestructuring: true, ignoreImports: true, ignoreGlobals: true, properties: 'never' },
+    ],
+    'default-case-last': 'error',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+        semi: true, // Garante o ponto e vírgula no final
+        singleQuote: true, // Usa aspas simples
+        tabWidth: 2, // Define 2 espaços para indentação
+      },
+    ],
+    eqeqeq: 'error',
+    'func-names': 'error',
+    'grouped-accessor-pairs': 'error',
+    'new-cap': 'error',
+    'no-alert': 'error',
+    'no-array-constructor': 'error',
+    'no-caller': 'error',
+    'no-extend-native': 'error',
+    'no-extra-bind': 'error',
+    'no-extra-label': 'error',
+    'no-lonely-if': 'error',
+    'no-new-object': 'error',
+    'no-throw-literal': 'error',
+    'no-unneeded-ternary': 'error',
+    'no-unused-vars': [
+      'error',
+      {
+        args: 'after-used',
+        ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
+    'no-use-before-define': ['error', { functions: false, allowNamedExports: true }],
+    'no-useless-computed-key': 'error',
+    'no-useless-rename': 'error',
+    'no-var': 'error',
+    'prefer-const': ['error', { destructuring: 'all' }],
+    'prefer-numeric-literals': 'error',
+    'prefer-promise-reject-errors': 'error',
+    'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
+    'prefer-template': 'error',
+    radix: 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/rules-of-hooks': 'error',
+    'react/no-children-prop': 'off',
+    'react-refresh/only-export-components': 'warn',
+  },
+};
