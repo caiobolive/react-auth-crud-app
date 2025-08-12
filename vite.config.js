@@ -5,6 +5,7 @@ import { fileURLToPath, URL } from 'url';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/react-auth-crud-app/', // Base path para GitHub Pages
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -16,6 +17,14 @@ export default defineConfig({
       '@/utils': fileURLToPath(new URL('./src/utils', import.meta.url)),
       '@/themes': fileURLToPath(new URL('./src/themes', import.meta.url)),
       '@/assets': fileURLToPath(new URL('./src/assets', import.meta.url)),
+    },
+  },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
     },
   },
 });
