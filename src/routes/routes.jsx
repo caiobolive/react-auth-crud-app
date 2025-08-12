@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from 'react-router';
+import { createBrowserRouter, Navigate, useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { Home } from '../pages/home';
 import { Auth } from '../pages/auth';
@@ -6,8 +6,10 @@ import React from 'react';
 
 function ProtectedRoute({ children }) {
   const userData = useSelector((state) => state.userData.userData);
+  const navigate = useNavigate();
+
   if (!userData?.token) {
-    window.location.replace('/auth');
+    navigate('/auth');
     return null;
   }
   return children;
@@ -15,8 +17,10 @@ function ProtectedRoute({ children }) {
 
 function PublicRoute({ children }) {
   const userData = useSelector((state) => state.userData.userData);
+  const navigate = useNavigate();
+
   if (userData?.token) {
-    window.location.replace('/home');
+    navigate('/home');
     return null;
   }
   return children;
