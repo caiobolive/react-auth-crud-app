@@ -27,32 +27,37 @@ function PublicRoute({ children }) {
   return children;
 }
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Navigate to="/auth" replace />,
+      errorElement: <ErrorBoundary />,
+    },
+    {
+      path: '/auth',
+      element: (
+        <PublicRoute>
+          <Auth />
+        </PublicRoute>
+      ),
+      errorElement: <ErrorBoundary />,
+    },
+    {
+      path: '/home',
+      element: (
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute>
+      ),
+      errorElement: <ErrorBoundary />,
+    },
+    {
+      path: '*',
+      element: <ErrorBoundary />,
+    },
+  ],
   {
-    path: '/',
-    element: <Navigate to="/auth" replace />,
-    errorElement: <ErrorBoundary />,
+    basename: '/react-auth-crud-app',
   },
-  {
-    path: '/auth',
-    element: (
-      <PublicRoute>
-        <Auth />
-      </PublicRoute>
-    ),
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: '/home',
-    element: (
-      <ProtectedRoute>
-        <Home />
-      </ProtectedRoute>
-    ),
-    errorElement: <ErrorBoundary />,
-  },
-  {
-    path: '*',
-    element: <ErrorBoundary />,
-  },
-]);
+);
